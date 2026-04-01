@@ -10,7 +10,6 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--void);color:var(--text);font-family:system-ui,-apple-system,sans-serif;min-height:100vh;overflow-x:hidden}
 
-/* HEADER */
 header{padding:16px 20px;border-bottom:1px solid rgba(79,195,247,0.1)}
 h1{font-family:'Orbitron',sans-serif;font-size:1.3rem;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .sub{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--dim);margin-top:2px}
@@ -19,23 +18,19 @@ h1{font-family:'Orbitron',sans-serif;font-size:1.3rem;background:linear-gradient
 .crew .d{width:6px;height:6px;border-radius:50%}
 .c1{background:var(--accent)}.c2{background:var(--success)}.c3{background:var(--gold)}.c4{background:var(--warm)}
 
-/* HIDE RADIOS */
 input[type="radio"]{display:none}
 
-/* SCENE TABS */
 .tabs{display:flex;flex-wrap:wrap;gap:4px;padding:10px 20px;background:var(--deep);border-bottom:1px solid rgba(79,195,247,0.08);overflow-x:auto}
 .tabs label{font-family:'Orbitron',sans-serif;font-size:.5rem;padding:6px 10px;background:rgba(79,195,247,0.05);border:1px solid rgba(79,195,247,0.1);border-radius:3px;cursor:pointer;white-space:nowrap;transition:all .15s}
 .tabs label:hover{background:rgba(79,195,247,0.1)}
 
-/* SCENES */
 .scenes{position:relative}
 .scene{display:none;padding:20px}
 .scene svg{display:block;width:100%;max-width:800px;height:auto;margin:0 auto}
 .scene-title{font-family:'Orbitron',sans-serif;font-size:1rem;color:#fff;margin:12px 0 6px;text-align:center}
-.scene-desc{font-size:.85rem;line-height:1.6;color:var(--text);max-width:700px;margin:0 auto;opacity:.85}
+.scene-desc{font-size:.85rem;line-height:1.7;color:var(--text);max-width:750px;margin:0 auto;opacity:.9}
 .scene-time{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);text-align:center;margin-top:8px}
 
-/* ACTIVE STATES */
 #s1:checked ~ .tabs label[for="s1"],
 #s2:checked ~ .tabs label[for="s2"],
 #s3:checked ~ .tabs label[for="s3"],
@@ -80,26 +75,30 @@ input[type="radio"]{display:none}
 #s20:checked ~ .scenes .sc20
 {display:block}
 
-/* STATS */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;max-width:700px;margin:16px auto 0;padding:12px;background:rgba(79,195,247,0.03);border-radius:6px}
-.stat{font-family:'JetBrains Mono',monospace;font-size:.6rem}
-.stat .k{color:var(--dim)}.stat .v{color:var(--accent);margin-left:4px}
+.telem{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;max-width:800px;margin:16px auto 0;padding:14px;background:rgba(79,195,247,0.03);border:1px solid rgba(79,195,247,0.08);border-radius:6px}
+.telem-group{padding:8px 0}
+.telem-group-title{font-family:'Orbitron',sans-serif;font-size:.55rem;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid rgba(79,195,247,0.1)}
+.telem .row{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:2px 0}
+.telem .row .k{color:var(--dim)}
+.telem .row .v{color:var(--accent);font-weight:500}
+.telem .row .v.ok{color:var(--success)}
+.telem .row .v.warn{color:var(--gold)}
+.telem .row .v.crit{color:var(--warm)}
 </style>
 </head>
 <body>
 
 <header>
 <h1>ARTEMIS II</h1>
-<div class="sub">APRIL 1, 2026 · LUNAR FLYBY · 10 DAYS</div>
+<div class="sub">APRIL 1, 2026 · LUNAR FLYBY · 10 DAYS · 685,000 MILES</div>
 <div class="crew">
-<span><i class="d c1"></i>CDR Reid Wiseman</span>
-<span><i class="d c2"></i>Victor Glover</span>
-<span><i class="d c3"></i>MS Christina Koch</span>
-<span><i class="d c4"></i>MS Jeremy Hansen (CSA)</span>
+<span><i class="d c1"></i>CDR Reid Wiseman (USN)</span>
+<span><i class="d c2"></i>Pilot Victor Glover (USN)</span>
+<span><i class="d c3"></i>MS Christina Koch (NASA)</span>
+<span><i class="d c4"></i>MS Jeremy Hansen (CSA/RCAF)</span>
 </div>
 </header>
 
-<!-- Radio buttons for CSS-only tab switching -->
 <input type="radio" name="scene" id="s1" checked>
 <input type="radio" name="scene" id="s2">
 <input type="radio" name="scene" id="s3">
@@ -132,10 +131,10 @@ input[type="radio"]{display:none}
 <label for="s8">Max Q</label>
 <label for="s9">SRB Sep</label>
 <label for="s10">MECO</label>
-<label for="s11">Solar Arrays</label>
-<label for="s12">HEO</label>
+<label for="s11">Solar Deploy</label>
+<label for="s12">HEO Burn</label>
 <label for="s13">TLI</label>
-<label for="s14">Day 4</label>
+<label for="s14">Outbound</label>
 <label for="s15">Lunar SOI</label>
 <label for="s16">FLYBY</label>
 <label for="s17">Return</label>
@@ -163,16 +162,26 @@ input[type="radio"]{display:none}
 </g>
 <circle cx="340" cy="305" r="4" fill="#ff6" opacity="0.7"/>
 <circle cx="460" cy="305" r="4" fill="#ff6" opacity="0.7"/>
-<text x="400" y="365" font-family="Orbitron,sans-serif" font-size="11" fill="#4fc3f7" text-anchor="middle" opacity="0.6">LAUNCH COMPLEX 39B</text>
+<text x="400" y="365" font-family="Orbitron,sans-serif" font-size="11" fill="#4fc3f7" text-anchor="middle" opacity="0.6">LAUNCH COMPLEX 39B · KENNEDY SPACE CENTER</text>
 </svg>
 <div class="scene-time">T−10:00:00 · Apr 1, 8:24 AM EDT</div>
 <div class="scene-title">Countdown Clock Begins</div>
-<div class="scene-desc">The Artemis II launch countdown initiates at T−49 hours. Over 1,000 engineers take stations at Kennedy Space Center. Weather monitoring begins for Pad 39B, Atlantic abort zones, and Pacific splashdown zones.</div>
-<div class="stats">
-<div class="stat"><span class="k">Vehicle:</span><span class="v">SLS Block 1 + Orion</span></div>
-<div class="stat"><span class="k">Height:</span><span class="v">322 ft (98.1 m)</span></div>
-<div class="stat"><span class="k">Mass:</span><span class="v">5.75M lbs fueled</span></div>
-<div class="stat"><span class="k">Weather:</span><span class="v">80% favorable</span></div>
+<div class="scene-desc">The Artemis II launch countdown initiates at T−49 hours 44 minutes under the command of Launch Director Charlie Blackwell-Thompson. Over 1,000 engineers and technicians take stations inside the Rocco Petrone Launch Control Center. Weather officers from the U.S. Space Force's 45th Weather Squadron begin continuous monitoring of conditions at Pad 39B, downrange abort zones across the Atlantic Ocean, and Pacific splashdown zones. The countdown includes multiple built-in holds for system checkpoints and final reviews.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Vehicle Configuration</div>
+<div class="row"><span class="k">Stack</span><span class="v">SLS Block 1 + Orion</span></div>
+<div class="row"><span class="k">Height</span><span class="v">322 ft (98.1 m)</span></div>
+<div class="row"><span class="k">Mass (fueled)</span><span class="v">5.75 million lbs</span></div>
+<div class="row"><span class="k">Pad</span><span class="v">LC-39B, KSC Florida</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Weather Status</div>
+<div class="row"><span class="k">Probability GO</span><span class="v ok">80%</span></div>
+<div class="row"><span class="k">Primary Concern</span><span class="v warn">Cumulus Rule</span></div>
+<div class="row"><span class="k">Ground Wind</span><span class="v">12 kts</span></div>
+<div class="row"><span class="k">Temp</span><span class="v">74°F / 23°C</span></div>
+</div>
 </div>
 </div>
 
@@ -196,12 +205,22 @@ input[type="radio"]{display:none}
 </svg>
 <div class="scene-time">T−07:00:00 · Apr 1, 11:24 AM EDT</div>
 <div class="scene-title">Cryogenic Propellant Loading</div>
-<div class="scene-desc">Over 730,000 gallons of liquid hydrogen (−423°F) and liquid oxygen (−297°F) flow into the SLS core stage. The process takes ~4 hours with continuous monitoring.</div>
-<div class="stats">
-<div class="stat"><span class="k">Core LH2:</span><span class="v">537,000 gal</span></div>
-<div class="stat"><span class="k">Core LOX:</span><span class="v">196,000 gal</span></div>
-<div class="stat"><span class="k">LH2 Temp:</span><span class="v">−423°F</span></div>
-<div class="stat"><span class="k">Status:</span><span class="v">LOADING</span></div>
+<div class="scene-desc">The most hazardous phase of pre-launch operations begins. Teams load over 730,000 gallons of cryogenic propellant into SLS: liquid hydrogen (LH2) cooled to −423°F (−253°C) and liquid oxygen (LOX) at −297°F (−183°C). The process follows a precise sequence: chilldown of feed lines, slow fill, fast fill, topping, then replenish mode. Vapor clouds vent from the rocket as the super-cold fluids boil at ambient temperatures. The entire process takes approximately 4 hours with dozens of sensor stations monitoring temperatures, pressures, and flow rates.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Core Stage Propellant</div>
+<div class="row"><span class="k">LH2 Capacity</span><span class="v">537,000 gallons</span></div>
+<div class="row"><span class="k">LOX Capacity</span><span class="v">196,000 gallons</span></div>
+<div class="row"><span class="k">LH2 Temperature</span><span class="v crit">−423°F (−253°C)</span></div>
+<div class="row"><span class="k">LOX Temperature</span><span class="v crit">−297°F (−183°C)</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Loading Status</div>
+<div class="row"><span class="k">Phase</span><span class="v warn">FAST FILL</span></div>
+<div class="row"><span class="k">Hazard Level</span><span class="v warn">ELEVATED</span></div>
+<div class="row"><span class="k">ICPS Status</span><span class="v">Chilldown</span></div>
+<div class="row"><span class="k">Duration</span><span class="v">~4 hours total</span></div>
+</div>
 </div>
 </div>
 
@@ -214,11 +233,27 @@ input[type="radio"]{display:none}
 <g transform="translate(330,180)"><rect x="-18" y="10" width="36" height="70" rx="8" fill="#e8650a" opacity="0.85"/><circle cx="0" cy="0" r="14" fill="#e8650a" opacity="0.85"/><circle cx="0" cy="-2" r="9" fill="#222" opacity="0.7"/><text x="0" y="100" font-family="JetBrains Mono,monospace" font-size="9" fill="#69f0ae" text-anchor="middle">GLOVER</text></g>
 <g transform="translate(460,180)"><rect x="-18" y="10" width="36" height="70" rx="8" fill="#e8650a" opacity="0.85"/><circle cx="0" cy="0" r="14" fill="#e8650a" opacity="0.85"/><circle cx="0" cy="-2" r="9" fill="#222" opacity="0.7"/><text x="0" y="100" font-family="JetBrains Mono,monospace" font-size="9" fill="#ffd740" text-anchor="middle">KOCH</text></g>
 <g transform="translate(590,180)"><rect x="-18" y="10" width="36" height="70" rx="8" fill="#e8650a" opacity="0.85"/><circle cx="0" cy="0" r="14" fill="#e8650a" opacity="0.85"/><circle cx="0" cy="-2" r="9" fill="#222" opacity="0.7"/><text x="0" y="100" font-family="JetBrains Mono,monospace" font-size="9" fill="#ff6e40" text-anchor="middle">HANSEN</text></g>
-<text x="400" y="370" font-family="Orbitron,sans-serif" font-size="10" fill="#4fc3f7" text-anchor="middle" opacity="0.5">ASTRONAUT CREW QUARTERS</text>
+<text x="400" y="370" font-family="Orbitron,sans-serif" font-size="10" fill="#4fc3f7" text-anchor="middle" opacity="0.5">NEIL ARMSTRONG OPERATIONS & CHECKOUT BUILDING</text>
 </svg>
 <div class="scene-time">T−09:00:00 · Apr 1, 9:24 AM EDT</div>
 <div class="scene-title">Crew Wake-Up & Suit-Up</div>
-<div class="scene-desc">The four astronauts wake, eat the traditional steak and eggs breakfast, receive final briefings, and don their orange Orion Crew Survival System suits — the first time these next-generation suits fly with humans.</div>
+<div class="scene-desc">The four Artemis II astronauts wake at 9:25 AM EDT inside the Astronaut Crew Quarters of the Neil Armstrong Operations and Checkout Building. They shower, eat the traditional preflight meal of steak and eggs — a NASA tradition since Alan Shepard's Mercury flight in 1961 — and receive final weather and systems briefings. Medical staff conduct vital sign checks. The crew then dons their orange Orion Crew Survival System (OCSS) suits, weighing about 25 lbs each, designed to sustain the wearer for up to 6 days in case of cabin depressurization.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Crew Medical Status</div>
+<div class="row"><span class="k">Wiseman (CDR)</span><span class="v ok">Nominal</span></div>
+<div class="row"><span class="k">Glover (Pilot)</span><span class="v ok">Nominal</span></div>
+<div class="row"><span class="k">Koch (MS1)</span><span class="v ok">Nominal</span></div>
+<div class="row"><span class="k">Hansen (MS2)</span><span class="v ok">Nominal</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">OCSS Suit Systems</div>
+<div class="row"><span class="k">Suit Type</span><span class="v">Orion Crew Survival</span></div>
+<div class="row"><span class="k">Mass</span><span class="v">~25 lbs each</span></div>
+<div class="row"><span class="k">O₂ Emergency</span><span class="v">6 day reserve</span></div>
+<div class="row"><span class="k">Comms</span><span class="v">Hardline + RF</span></div>
+</div>
+</div>
 </div>
 
 <!-- SCENE 4: Ingress -->
@@ -226,7 +261,7 @@ input[type="radio"]{display:none}
 <svg viewBox="0 0 800 400" width="800" height="400">
 <rect width="800" height="400" fill="#111620"/>
 <rect x="100" y="60" width="600" height="280" rx="6" fill="#181e2a" stroke="#2a3a50"/>
-<text x="400" y="95" font-family="JetBrains Mono,monospace" font-size="10" fill="#4fc3f7" text-anchor="middle" opacity="0.5">WHITE ROOM — 322 FT</text>
+<text x="400" y="95" font-family="JetBrains Mono,monospace" font-size="10" fill="#4fc3f7" text-anchor="middle" opacity="0.5">WHITE ROOM — 322 FT ABOVE PAD</text>
 <rect x="300" y="120" width="200" height="160" rx="10" fill="#1a2030" stroke="#2a3a50"/>
 <text x="400" y="150" font-family="Orbitron,sans-serif" font-size="10" fill="#546e7a" text-anchor="middle">ORION HATCH</text>
 <circle cx="350" cy="190" r="12" fill="#e8650a" opacity="0.7"/><text x="350" y="215" font-family="JetBrains Mono" font-size="8" fill="#4fc3f7" text-anchor="middle">CDR</text>
@@ -234,11 +269,27 @@ input[type="radio"]{display:none}
 <circle cx="350" cy="250" r="12" fill="#e8650a" opacity="0.7"/><text x="350" y="275" font-family="JetBrains Mono" font-size="8" fill="#ffd740" text-anchor="middle">MS1</text>
 <circle cx="450" cy="250" r="12" fill="#e8650a" opacity="0.7"/><text x="450" y="275" font-family="JetBrains Mono" font-size="8" fill="#ff6e40" text-anchor="middle">MS2</text>
 <rect x="280" y="295" width="240" height="5" rx="2" fill="#69f0ae" opacity="0.25"/>
-<text x="400" y="320" font-family="JetBrains Mono,monospace" font-size="9" fill="#69f0ae" text-anchor="middle" opacity="0.6">HATCH SEALED — PRESSURE OK</text>
+<text x="400" y="320" font-family="JetBrains Mono,monospace" font-size="9" fill="#69f0ae" text-anchor="middle" opacity="0.6">HATCH SEALED — PRESSURE VERIFIED</text>
 </svg>
 <div class="scene-time">T−03:00:00 · Apr 1, 3:24 PM EDT</div>
-<div class="scene-title">Crew Ingress to Orion</div>
-<div class="scene-desc">The crew rides 322 feet up the mobile launcher, crosses the crew access arm, and enters Orion through the White Room. The hatch is sealed, inspected, and pressure-tested.</div>
+<div class="scene-title">Crew Ingress to Orion "Integrity"</div>
+<div class="scene-desc">The crew departs crew quarters in modified Airstream trailers for the 20-minute drive to Pad 39B. They ride the elevator 322 feet up the mobile launcher, cross the crew access arm, and enter Orion through the White Room — a sterile enclosure surrounding the hatch. Commander Wiseman enters first, taking the left seat. Glover takes the right seat. Koch and Hansen take the rear seats. The closeout crew verifies harness connections, suit comm links, and emergency oxygen lines. The hatch is sealed, inspected for debris, pressure-tested, and declared flight-ready.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Crew Seating</div>
+<div class="row"><span class="k">Left Seat (CDR)</span><span class="v">Wiseman</span></div>
+<div class="row"><span class="k">Right Seat (PLT)</span><span class="v">Glover</span></div>
+<div class="row"><span class="k">Rear Left (MS1)</span><span class="v">Koch</span></div>
+<div class="row"><span class="k">Rear Right (MS2)</span><span class="v">Hansen</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Cabin Status</div>
+<div class="row"><span class="k">Atmosphere</span><span class="v">N₂/O₂ — 14.7 psi</span></div>
+<div class="row"><span class="k">Hatch Seal</span><span class="v ok">VERIFIED</span></div>
+<div class="row"><span class="k">Temperature</span><span class="v">72°F nominal</span></div>
+<div class="row"><span class="k">Comm Links</span><span class="v ok">4/4 Active</span></div>
+</div>
+</div>
 </div>
 
 <!-- SCENE 5: Terminal -->
@@ -247,16 +298,32 @@ input[type="radio"]{display:none}
 <rect width="800" height="400" fill="#0a1020"/>
 <rect x="250" y="60" width="300" height="80" rx="3" fill="#061020" stroke="#1a3a6a"/>
 <text x="400" y="105" font-family="Orbitron,sans-serif" font-size="22" fill="#ff5252" text-anchor="middle" font-weight="bold">T−00:10:00</text>
-<text x="400" y="125" font-family="JetBrains Mono,monospace" font-size="11" fill="#69f0ae" text-anchor="middle">ALL SYSTEMS GO</text>
+<text x="400" y="125" font-family="JetBrains Mono,monospace" font-size="11" fill="#69f0ae" text-anchor="middle">ALL SYSTEMS GO — GLS ACTIVE</text>
 <g transform="translate(150,220)"><rect x="-30" y="-20" width="60" height="40" rx="2" fill="#0a1a2a" stroke="#1a3a5a"/><circle cx="0" cy="-10" r="4" fill="#69f0ae" opacity="0.7"/><text x="0" y="8" font-family="JetBrains Mono" font-size="7" fill="#546e7a" text-anchor="middle">GLS</text></g>
 <g transform="translate(300,220)"><rect x="-30" y="-20" width="60" height="40" rx="2" fill="#0a1a2a" stroke="#1a3a5a"/><circle cx="0" cy="-10" r="4" fill="#69f0ae" opacity="0.7"/><text x="0" y="8" font-family="JetBrains Mono" font-size="7" fill="#546e7a" text-anchor="middle">RANGE</text></g>
 <g transform="translate(450,220)"><rect x="-30" y="-20" width="60" height="40" rx="2" fill="#0a1a2a" stroke="#1a3a5a"/><circle cx="0" cy="-10" r="4" fill="#69f0ae" opacity="0.7"/><text x="0" y="8" font-family="JetBrains Mono" font-size="7" fill="#546e7a" text-anchor="middle">FIDO</text></g>
 <g transform="translate(600,220)"><rect x="-30" y="-20" width="60" height="40" rx="2" fill="#0a1a2a" stroke="#1a3a5a"/><circle cx="0" cy="-10" r="4" fill="#69f0ae" opacity="0.7"/><text x="0" y="8" font-family="JetBrains Mono" font-size="7" fill="#546e7a" text-anchor="middle">WEATHER</text></g>
-<text x="400" y="340" font-family="Orbitron,sans-serif" font-size="11" fill="#ff6e40" text-anchor="middle" opacity="0.6">FIRING ROOM 1</text>
+<text x="400" y="340" font-family="Orbitron,sans-serif" font-size="11" fill="#ff6e40" text-anchor="middle" opacity="0.6">FIRING ROOM 1 — LAUNCH CONTROL CENTER</text>
 </svg>
 <div class="scene-time">T−00:10:00 · Apr 1, 6:14 PM EDT</div>
 <div class="scene-title">Terminal Countdown</div>
-<div class="scene-desc">The Ground Launch Sequencer takes control. Hydraulics activate, ordnance is armed, and the sound suppression system prepares 450,000 gallons of water.</div>
+<div class="scene-desc">The Ground Launch Sequencer (GLS) — the automated computer system — assumes control. In the final 10 minutes: hydraulic pressure units activate for engine gimbal steering, RS-25 hydrogen burn-off igniters are armed, ordnance circuits for SRB ignition and separation are armed, and umbilical connections retract. At T−33 seconds, onboard flight computers take full authority. At T−10 seconds, the hydrogen burnoff system ignites. The sound suppression system prepares to release 450,000 gallons of water at ignition.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Systems Armed</div>
+<div class="row"><span class="k">GLS Mode</span><span class="v ok">AUTO SEQUENCE</span></div>
+<div class="row"><span class="k">Hydraulics</span><span class="v ok">PRESSURIZED</span></div>
+<div class="row"><span class="k">Ordnance</span><span class="v warn">ARMED</span></div>
+<div class="row"><span class="k">H₂ Burnoff</span><span class="v warn">ARMED</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Go/No-Go Poll</div>
+<div class="row"><span class="k">Range Safety</span><span class="v ok">GO</span></div>
+<div class="row"><span class="k">Flight Dynamics</span><span class="v ok">GO</span></div>
+<div class="row"><span class="k">Weather</span><span class="v ok">GO (80%)</span></div>
+<div class="row"><span class="k">Vehicle</span><span class="v ok">GO</span></div>
+</div>
+</div>
 </div>
 
 <!-- SCENE 6: Ignition -->
@@ -276,16 +343,26 @@ input[type="radio"]{display:none}
 <ellipse cx="0" cy="211" rx="5" ry="12" fill="#fff" opacity="0.8"/>
 </g>
 <ellipse cx="400" cy="330" rx="140" ry="30" fill="#ff6600" opacity="0.25"/>
-<text x="400" y="380" font-family="Orbitron,sans-serif" font-size="14" fill="#ff6e40" text-anchor="middle" font-weight="bold">RS-25 IGNITION — T−7 SEC</text>
+<text x="400" y="380" font-family="Orbitron,sans-serif" font-size="14" fill="#ff6e40" text-anchor="middle" font-weight="bold">RS-25 IGNITION — T−6.36 SEC</text>
 </svg>
 <div class="scene-time">T−00:00:07 · Apr 1, 6:23:53 PM EDT</div>
 <div class="scene-title">RS-25 Main Engine Ignition</div>
-<div class="scene-desc">Four RS-25 engines ignite in sequence, producing 1.62 million pounds of thrust. The rocket strains against hold-down posts while computers verify all systems.</div>
-<div class="stats">
-<div class="stat"><span class="k">Engines:</span><span class="v">4× RS-25 @ 109%</span></div>
-<div class="stat"><span class="k">Thrust:</span><span class="v">1.62M lbf</span></div>
-<div class="stat"><span class="k">LH2 Flow:</span><span class="v">1,500 gal/sec</span></div>
-<div class="stat"><span class="k">Status:</span><span class="v">ALL NOMINAL</span></div>
+<div class="scene-desc">At T−6.36 seconds, the four Aerojet Rocketdyne RS-25 engines ignite in a staggered 0.12-second sequence — Engine 1, then 2, 3, and 4 — each ramping to 109% of rated thrust within 3 seconds. Combined, they produce 1.62 million pounds of force, consuming 1,500 gallons of propellant per second. The 5.75-million-pound SLS strains against eight massive hold-down posts while onboard computers verify thrust levels, chamber pressures, and gimbal responses. A massive steam cloud erupts as 450,000 gallons of sound suppression water absorbs acoustic energy.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">RS-25 Engine Status</div>
+<div class="row"><span class="k">Engine 1</span><span class="v ok">109% — NOMINAL</span></div>
+<div class="row"><span class="k">Engine 2</span><span class="v ok">109% — NOMINAL</span></div>
+<div class="row"><span class="k">Engine 3</span><span class="v ok">109% — NOMINAL</span></div>
+<div class="row"><span class="k">Engine 4</span><span class="v ok">109% — NOMINAL</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Pre-Release</div>
+<div class="row"><span class="k">Core Thrust</span><span class="v">1.62 million lbf</span></div>
+<div class="row"><span class="k">Hold-downs</span><span class="v warn">ENGAGED</span></div>
+<div class="row"><span class="k">LH2 Flow Rate</span><span class="v">1,500 gal/sec</span></div>
+<div class="row"><span class="k">Sound Suppression</span><span class="v ok">ACTIVE</span></div>
+</div>
 </div>
 </div>
 
@@ -308,16 +385,26 @@ input[type="radio"]{display:none}
 <ellipse cx="0" cy="184" rx="7" ry="16" fill="#fff" opacity="0.7"/>
 </g>
 <ellipse cx="400" cy="315" rx="100" ry="20" fill="rgba(255,255,255,0.08)"/>
-<text x="400" y="375" font-family="Orbitron,sans-serif" font-size="22" fill="#ffd740" text-anchor="middle" font-weight="bold">LIFTOFF</text>
+<text x="400" y="375" font-family="Orbitron,sans-serif" font-size="22" fill="#ffd740" text-anchor="middle" font-weight="bold">LIFTOFF — ARTEMIS II</text>
 </svg>
 <div class="scene-time">T+00:00:00 · Apr 1, 6:24:00 PM EDT</div>
-<div class="scene-title">Liftoff — Artemis II</div>
-<div class="scene-desc">The twin SRBs ignite, producing 8.8 million pounds of combined thrust. For the first time since 1972, humans leave Earth bound for the Moon.</div>
-<div class="stats">
-<div class="stat"><span class="k">Total Thrust:</span><span class="v">8.8M lbf</span></div>
-<div class="stat"><span class="k">Accel:</span><span class="v">1.2 G</span></div>
-<div class="stat"><span class="k">Tower Clear:</span><span class="v">8.5 seconds</span></div>
-<div class="stat"><span class="k">Guidance:</span><span class="v">NOMINAL</span></div>
+<div class="scene-title">Liftoff — Humanity Returns to the Moon</div>
+<div class="scene-desc">At precisely 6:24 PM EDT, the twin five-segment solid rocket boosters ignite simultaneously, each producing 3.6 million pounds of thrust. Combined with the RS-25s, SLS generates 8.8 million pounds of force — 15% more than Saturn V. The eight hold-down posts release. The vehicle clears the 380-foot mobile launcher tower in 8.5 seconds. For the first time since Apollo 17 in December 1972, humans leave Earth bound for the Moon. The rocket executes a roll-and-pitch program, arcing east over the Atlantic.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Flight Data</div>
+<div class="row"><span class="k">Altitude</span><span class="v">0 → 1,000 ft</span></div>
+<div class="row"><span class="k">Velocity</span><span class="v">0 → 100 mph</span></div>
+<div class="row"><span class="k">Acceleration</span><span class="v">1.2 G (increasing)</span></div>
+<div class="row"><span class="k">Downrange</span><span class="v">0 mi</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Propulsion</div>
+<div class="row"><span class="k">Total Thrust</span><span class="v crit">8.8 million lbf</span></div>
+<div class="row"><span class="k">SRB Status</span><span class="v ok">2/2 NOMINAL</span></div>
+<div class="row"><span class="k">RS-25 Status</span><span class="v ok">4/4 NOMINAL</span></div>
+<div class="row"><span class="k">Guidance</span><span class="v ok">NOMINAL</span></div>
+</div>
 </div>
 </div>
 
@@ -334,16 +421,26 @@ input[type="radio"]{display:none}
 <ellipse cx="0" cy="100" rx="16" ry="28" fill="#ff6600" opacity="0.7"/>
 <ellipse cx="0" cy="98" rx="9" ry="18" fill="#ffcc00" opacity="0.8"/>
 </g>
-<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="14" fill="#ffd740" text-anchor="middle">MAX Q — MACH 1.5 — 35,000 FT</text>
+<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="14" fill="#ffd740" text-anchor="middle">MAX Q — MAXIMUM AERODYNAMIC PRESSURE</text>
 </svg>
 <div class="scene-time">T+00:01:15 · Apr 1, 6:25:15 PM EDT</div>
-<div class="scene-title">Maximum Dynamic Pressure</div>
-<div class="scene-desc">At ~1,100 mph, SLS passes through Max Q — peak aerodynamic stress. Engines throttle down briefly then back up as atmosphere thins.</div>
-<div class="stats">
-<div class="stat"><span class="k">Altitude:</span><span class="v">~35,000 ft</span></div>
-<div class="stat"><span class="k">Velocity:</span><span class="v">Mach 1.5</span></div>
-<div class="stat"><span class="k">Accel:</span><span class="v">2.5 G</span></div>
-<div class="stat"><span class="k">Throttle:</span><span class="v">72%→109%</span></div>
+<div class="scene-title">Maximum Dynamic Pressure (Max Q)</div>
+<div class="scene-desc">At T+75 seconds, SLS passes through Max Q — the zone of peak aerodynamic stress where increasing velocity meets still-dense atmosphere. The vehicle is traveling at Mach 1.5 (~1,100 mph) at 35,000 feet altitude. The RS-25 engines throttle down to 72% thrust to reduce structural loads, then throttle back up to 109% as the atmosphere thins. The crew experiences approximately 2.5 Gs. Wind shear and turbulence at this altitude require continuous flight computer adjustments to maintain trajectory.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Flight Data</div>
+<div class="row"><span class="k">Altitude</span><span class="v">35,000 ft (10.7 km)</span></div>
+<div class="row"><span class="k">Velocity</span><span class="v">Mach 1.5 (1,100 mph)</span></div>
+<div class="row"><span class="k">Acceleration</span><span class="v">2.5 G</span></div>
+<div class="row"><span class="k">Downrange</span><span class="v">~8 mi</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Aerodynamics</div>
+<div class="row"><span class="k">Dynamic Pressure</span><span class="v crit">MAX (~700 psf)</span></div>
+<div class="row"><span class="k">RS-25 Throttle</span><span class="v warn">72% → 109%</span></div>
+<div class="row"><span class="k">SRB Chamber</span><span class="v ok">NOMINAL</span></div>
+<div class="row"><span class="k">Structural Load</span><span class="v warn">PEAK</span></div>
+</div>
 </div>
 </div>
 
@@ -363,11 +460,27 @@ input[type="radio"]{display:none}
 <rect x="500" y="190" width="10" height="80" rx="2" fill="#888" opacity="0.5" transform="rotate(15,505,230)"/>
 <circle cx="370" cy="188" r="5" fill="#ffd740" opacity="0.6"/>
 <circle cx="430" cy="188" r="5" fill="#ffd740" opacity="0.6"/>
-<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="14" fill="#ffd740" text-anchor="middle">SRB SEPARATION — 150,000 FT</text>
+<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="14" fill="#ffd740" text-anchor="middle">SRB SEPARATION — BOOSTERS AWAY</text>
 </svg>
 <div class="scene-time">T+00:02:06 · Apr 1, 6:26:06 PM EDT</div>
-<div class="scene-title">Booster Separation</div>
-<div class="scene-desc">The twin SRBs separate at 28 miles altitude, 3,100 mph. Sixteen separation motors push the spent casings safely away. Core stage continues alone.</div>
+<div class="scene-title">Solid Rocket Booster Separation</div>
+<div class="scene-desc">At T+2 minutes 6 seconds, the twin SRBs have exhausted their 1.1 million pounds of propellant each. At 150,000 feet (28 miles) altitude and 3,100 mph, explosive bolts detonate at the forward and aft attach points. Sixteen booster separation motors fire for 1.02 seconds, pushing the 200,000-lb spent casings away at 20 ft/sec. The SRBs tumble into the Atlantic ~140 miles downrange. The core stage RS-25 engines continue burning, now the sole source of thrust at 1.62 million pounds.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Flight Data</div>
+<div class="row"><span class="k">Altitude</span><span class="v">150,000 ft (28 mi)</span></div>
+<div class="row"><span class="k">Velocity</span><span class="v">3,100 mph</span></div>
+<div class="row"><span class="k">Acceleration</span><span class="v">2.8 G</span></div>
+<div class="row"><span class="k">Downrange</span><span class="v">~32 mi</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Separation Event</div>
+<div class="row"><span class="k">SRB Burn Time</span><span class="v">126 seconds</span></div>
+<div class="row"><span class="k">Sep Motors</span><span class="v ok">16/16 FIRED</span></div>
+<div class="row"><span class="k">Core Thrust</span><span class="v">1.62M lbf (alone)</span></div>
+<div class="row"><span class="k">Trajectory</span><span class="v ok">NOMINAL</span></div>
+</div>
+</div>
 </div>
 
 <!-- SCENE 10: MECO -->
@@ -384,16 +497,26 @@ input[type="radio"]{display:none}
 <g transform="translate(400,310)" opacity="0.3">
 <rect x="-10" y="-35" width="20" height="75" rx="2" fill="#888"/>
 </g>
-<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="14" fill="#69f0ae" text-anchor="middle">MECO — ORBIT ACHIEVED</text>
+<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="14" fill="#69f0ae" text-anchor="middle">MECO — MAIN ENGINE CUTOFF</text>
 </svg>
 <div class="scene-time">T+00:08:06 · Apr 1, 6:32:06 PM EDT</div>
-<div class="scene-title">Main Engine Cutoff</div>
-<div class="scene-desc">RS-25 engines shut down after consuming 733,000 gallons of propellant. Core stage separates. Orion achieves orbit: 100 mi × 1,400 mi.</div>
-<div class="stats">
-<div class="stat"><span class="k">Burn Time:</span><span class="v">8m 06s</span></div>
-<div class="stat"><span class="k">Velocity:</span><span class="v">17,500 mph</span></div>
-<div class="stat"><span class="k">Perigee:</span><span class="v">~100 mi</span></div>
-<div class="stat"><span class="k">Apogee:</span><span class="v">~1,400 mi</span></div>
+<div class="scene-title">Main Engine Cutoff & Core Stage Separation</div>
+<div class="scene-desc">At T+8 minutes 6 seconds, the four RS-25 engines shut down after consuming 733,000 gallons of propellant. Eighteen seconds later, explosive bolts and push-off springs separate the 188,000-lb empty core stage from Orion/ICPS. The core stage tumbles toward Pacific Ocean impact or atmospheric burnup. Orion achieves a preliminary highly elliptical orbit: perigee ~100 miles, apogee ~1,400 miles — nearly 5× higher than ISS. Orbital velocity: 17,500 mph.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Orbit Achieved</div>
+<div class="row"><span class="k">Perigee</span><span class="v">~100 mi (160 km)</span></div>
+<div class="row"><span class="k">Apogee</span><span class="v">~1,400 mi (2,250 km)</span></div>
+<div class="row"><span class="k">Velocity</span><span class="v">17,500 mph</span></div>
+<div class="row"><span class="k">Orbital Period</span><span class="v">~2 hours</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Core Stage</div>
+<div class="row"><span class="k">Burn Duration</span><span class="v">8m 06s</span></div>
+<div class="row"><span class="k">Propellant Used</span><span class="v">733,000 gal</span></div>
+<div class="row"><span class="k">Status</span><span class="v">SEPARATED</span></div>
+<div class="row"><span class="k">ICPS</span><span class="v ok">READY</span></div>
+</div>
 </div>
 </div>
 
@@ -415,11 +538,27 @@ input[type="radio"]{display:none}
 <circle cx="38" cy="28" r="14" fill="#1a4488" opacity="0.45" stroke="#2266aa" stroke-width="2"/>
 <line x1="10" y1="18" x2="26" y2="24" stroke="#556" stroke-width="2"/>
 </g>
-<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="13" fill="#4fc3f7" text-anchor="middle">SOLAR ARRAYS DEPLOYED — 11.1 kW</text>
+<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="13" fill="#4fc3f7" text-anchor="middle">SOLAR ARRAY DEPLOYMENT — 11.1 kW</text>
 </svg>
 <div class="scene-time">T+00:12:00 · Apr 1, 6:36 PM EDT</div>
-<div class="scene-title">Solar Array Deployment</div>
-<div class="scene-desc">Orion deploys four X-shaped solar arrays spanning 62 feet, generating 11.1 kW. Crew begins configuring cabin for spaceflight.</div>
+<div class="scene-title">Solar Array Deployment & Cabin Configuration</div>
+<div class="scene-desc">Twelve minutes after launch, Orion deploys its four X-shaped solar array wings from the European Service Module, spanning 62 feet tip-to-tip. The gallium-arsenide photovoltaic cells generate 11.1 kilowatts, charging lithium-ion batteries and powering all systems. Koch and Hansen unstrap and begin converting the cabin from launch to spaceflight configuration: waste collection system setup, water dispenser activation, food galley configuration, and Environmental Control and Life Support System (ECLSS) verification.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Power System</div>
+<div class="row"><span class="k">Array Span</span><span class="v">62 ft tip-to-tip</span></div>
+<div class="row"><span class="k">Power Output</span><span class="v ok">11.1 kW</span></div>
+<div class="row"><span class="k">Cell Type</span><span class="v">Gallium Arsenide</span></div>
+<div class="row"><span class="k">Battery</span><span class="v ok">Li-ion CHARGING</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Life Support (ECLSS)</div>
+<div class="row"><span class="k">Cabin Pressure</span><span class="v ok">14.7 psi</span></div>
+<div class="row"><span class="k">O₂ Level</span><span class="v ok">21%</span></div>
+<div class="row"><span class="k">CO₂ Scrubber</span><span class="v ok">ACTIVE</span></div>
+<div class="row"><span class="k">Temperature</span><span class="v">72°F / 22°C</span></div>
+</div>
+</div>
 </div>
 
 <!-- SCENE 12: HEO -->
@@ -435,8 +574,24 @@ input[type="radio"]{display:none}
 <text x="400" y="40" font-family="Orbitron,sans-serif" font-size="13" fill="#4fc3f7" text-anchor="middle">HIGH EARTH ORBIT — 43,500 MI APOGEE</text>
 </svg>
 <div class="scene-time">T+01:30:00 · Apr 1, 7:54 PM EDT</div>
-<div class="scene-title">High Earth Orbit</div>
-<div class="scene-desc">ICPS fires for 15 minutes, raising apogee to 43,500 miles — 1/6 the way to the Moon. Crew sees full Earth disk against the void.</div>
+<div class="scene-title">High Earth Orbit Insertion Burn</div>
+<div class="scene-desc">The ICPS (Interim Cryogenic Propulsion Stage) RL10B-2 engine fires for approximately 15 minutes, expending nearly all remaining propellant. This dramatic burn raises Orion's apogee from 1,400 miles to 43,500 miles (70,000 km) — roughly 1/6 the way to the Moon. The crew will see the full Earth disk framed against the black void. At this altitude, they are already beyond the protective Van Allen radiation belts. Orbital period increases to ~23.5 hours.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">New Orbit</div>
+<div class="row"><span class="k">Perigee</span><span class="v">~112 mi (185 km)</span></div>
+<div class="row"><span class="k">Apogee</span><span class="v">43,500 mi (70,000 km)</span></div>
+<div class="row"><span class="k">Orbital Period</span><span class="v">~23.5 hours</span></div>
+<div class="row"><span class="k">Inclination</span><span class="v">28.5°</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">ICPS Burn</div>
+<div class="row"><span class="k">Engine</span><span class="v">RL10B-2</span></div>
+<div class="row"><span class="k">Duration</span><span class="v">~15 minutes</span></div>
+<div class="row"><span class="k">Delta-V</span><span class="v">~2,400 mph</span></div>
+<div class="row"><span class="k">Radiation</span><span class="v warn">Beyond Van Allen</span></div>
+</div>
+</div>
 </div>
 
 <!-- SCENE 13: TLI -->
@@ -457,21 +612,31 @@ input[type="radio"]{display:none}
 <ellipse cx="0" cy="43" rx="5" ry="20" fill="#ffcc00" opacity="0.85"/>
 </g>
 <path d="M520,175 Q600,155 700,130" stroke="#ffd740" stroke-width="1.5" fill="none" stroke-dasharray="4 4" opacity="0.4"/>
-<text x="720" y="125" font-family="JetBrains Mono,monospace" font-size="10" fill="#ffd740" opacity="0.6">MOON →</text>
-<text x="350" y="50" font-family="Orbitron,sans-serif" font-size="15" fill="#ffd740" text-anchor="middle" font-weight="bold">TRANSLUNAR INJECTION</text>
+<text x="720" y="125" font-family="JetBrains Mono,monospace" font-size="10" fill="#ffd740" opacity="0.6">→ MOON</text>
+<text x="350" y="50" font-family="Orbitron,sans-serif" font-size="15" fill="#ffd740" text-anchor="middle" font-weight="bold">TRANSLUNAR INJECTION — POINT OF NO RETURN</text>
 </svg>
 <div class="scene-time">Day 2 · Apr 2, 9:24 PM EDT</div>
-<div class="scene-title">Translunar Injection</div>
-<div class="scene-desc">The ESM main engine fires for 30 minutes, accelerating Orion to 24,500 mph on a free-return trajectory around the Moon.</div>
-<div class="stats">
-<div class="stat"><span class="k">Engine:</span><span class="v">OMS-E (ESM)</span></div>
-<div class="stat"><span class="k">Burn:</span><span class="v">~30 min</span></div>
-<div class="stat"><span class="k">Delta-V:</span><span class="v">~7,000 mph</span></div>
-<div class="stat"><span class="k">Trajectory:</span><span class="v">Free-Return</span></div>
+<div class="scene-title">Translunar Injection — Bound for the Moon</div>
+<div class="scene-desc">The defining moment of Artemis II. The European Service Module's OMS-E main engine fires for approximately 30 minutes — the longest single burn of the mission. This accelerates Orion from orbital velocity to 24,500 mph and places the spacecraft on a free-return trajectory: a figure-eight path around the Moon's far side that returns to Earth using gravity alone. This is a critical safety feature: even if the main engine fails after TLI, the crew will coast around the Moon and return home — the same principle that saved Apollo 13.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">TLI Burn</div>
+<div class="row"><span class="k">Engine</span><span class="v">OMS-E (ESM Main)</span></div>
+<div class="row"><span class="k">Thrust</span><span class="v">6,000 lbf</span></div>
+<div class="row"><span class="k">Duration</span><span class="v">~30 minutes</span></div>
+<div class="row"><span class="k">Delta-V</span><span class="v">~7,000 mph</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Trajectory</div>
+<div class="row"><span class="k">Post-Burn Velocity</span><span class="v">~24,500 mph</span></div>
+<div class="row"><span class="k">Type</span><span class="v ok">Free-Return</span></div>
+<div class="row"><span class="k">Lunar Closest</span><span class="v">~4,100 mi</span></div>
+<div class="row"><span class="k">Total Distance</span><span class="v">~685,000 mi</span></div>
+</div>
 </div>
 </div>
 
-<!-- SCENE 14: Day 4 -->
+<!-- SCENE 14: Outbound -->
 <div class="scene sc14">
 <svg viewBox="0 0 800 400" width="800" height="400">
 <rect width="800" height="400" fill="#010408"/>
@@ -484,11 +649,28 @@ input[type="radio"]{display:none}
 <rect x="-5" y="-3" width="10" height="14" rx="1" fill="#8899aa"/>
 <path d="M-4,-3 L0,-9 L4,-3Z" fill="#d0c8b8"/>
 </g>
-<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="13" fill="#b0bec5" text-anchor="middle">DEEP SPACE — 150,000 MILES</text>
+<path d="M85,340 Q200,280 360,210 Q520,140 710,95" stroke="#ffd740" stroke-width="0.6" fill="none" stroke-dasharray="6 4" opacity="0.2"/>
+<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="13" fill="#b0bec5" text-anchor="middle">OUTBOUND COAST — DAYS 3-4</text>
 </svg>
-<div class="scene-time">Day 4 · Apr 4, 2026</div>
-<div class="scene-title">Deep Space Transit</div>
-<div class="scene-desc">Earth shrinks to thumb-size. Crew conducts life support stress tests, exercises, and participates in first deep-space video broadcast.</div>
+<div class="scene-time">Days 3-4 · Apr 3-4, 2026</div>
+<div class="scene-title">Outbound Transit — Deep Space</div>
+<div class="scene-desc">The crew is now 80,000-150,000 miles from Earth and receding at approximately 5,800 mph. Mission Specialist Hansen prepares and executes trajectory correction burns using ESM auxiliary thrusters. The crew rehearses lunar flyby observation procedures — they have only ~3 hours during closest approach for photography and visual documentation. Day 4 features critical life support stress tests: all four astronauts exercise simultaneously, generating maximum CO₂ and body heat to verify ECLSS can handle peak loads. Signal round-trip delay reaches 1.6 seconds.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Navigation</div>
+<div class="row"><span class="k">Distance (Day 3)</span><span class="v">~80,000 mi</span></div>
+<div class="row"><span class="k">Distance (Day 4)</span><span class="v">~150,000 mi</span></div>
+<div class="row"><span class="k">Velocity</span><span class="v">~3,200-5,800 mph</span></div>
+<div class="row"><span class="k">Signal Delay</span><span class="v">0.9-1.6 sec</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Crew Operations</div>
+<div class="row"><span class="k">TCM Burns</span><span class="v ok">2 COMPLETE</span></div>
+<div class="row"><span class="k">ECLSS Test</span><span class="v ok">STRESS PASSED</span></div>
+<div class="row"><span class="k">Video Downlink</span><span class="v ok">1st Broadcast</span></div>
+<div class="row"><span class="k">DSN Station</span><span class="v">Goldstone 34m</span></div>
+</div>
+</div>
 </div>
 
 <!-- SCENE 15: Lunar SOI -->
@@ -506,11 +688,27 @@ input[type="radio"]{display:none}
 <rect x="-4" y="-3" width="8" height="11" rx="1" fill="#aaa"/>
 <path d="M-3,-3 L0,-8 L3,-3Z" fill="#ddd"/>
 </g>
-<text x="280" y="50" font-family="Orbitron,sans-serif" font-size="14" fill="#b0bec5" text-anchor="middle">LUNAR SPHERE OF INFLUENCE</text>
+<text x="280" y="50" font-family="Orbitron,sans-serif" font-size="14" fill="#b0bec5" text-anchor="middle">ENTERING LUNAR SPHERE OF INFLUENCE</text>
 </svg>
 <div class="scene-time">Day 5 · Apr 5, 2026</div>
-<div class="scene-title">Entering Lunar Gravity</div>
-<div class="scene-desc">Orion crosses into Moon's gravitational dominance at 200,000 miles from Earth. Crew conducts pressure suit tests for first time in space.</div>
+<div class="scene-title">Lunar Sphere of Influence — Gravity Transition</div>
+<div class="scene-desc">A major gravitational milestone: Orion crosses the boundary where the Moon's gravity becomes the dominant force, approximately 200,000 miles from Earth. The spacecraft begins accelerating toward the Moon rather than decelerating from Earth's pull. The crew conducts extensive pressure suit tests — the first in actual spaceflight: timed rapid donning, seal pressurization, and helmet feeding port tests. Through the windows, the Moon has grown from a bright dot to a visible disk with craters distinguishable to the naked eye. Final trajectory correction burn ensures proper approach angle.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Navigation</div>
+<div class="row"><span class="k">Distance from Earth</span><span class="v">~200,000 mi</span></div>
+<div class="row"><span class="k">Distance to Moon</span><span class="v">~40,000 mi</span></div>
+<div class="row"><span class="k">Velocity</span><span class="v">~2,800 mph (accel)</span></div>
+<div class="row"><span class="k">Gravity Dominance</span><span class="v warn">LUNAR</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Suit Tests</div>
+<div class="row"><span class="k">Rapid Don Time</span><span class="v ok">All 4 Passed</span></div>
+<div class="row"><span class="k">Pressurization</span><span class="v ok">All Seals OK</span></div>
+<div class="row"><span class="k">Feed Ports</span><span class="v ok">Functional</span></div>
+<div class="row"><span class="k">Final TCM</span><span class="v ok">COMPLETE</span></div>
+</div>
+</div>
 </div>
 
 <!-- SCENE 16: Flyby -->
@@ -524,21 +722,31 @@ input[type="radio"]{display:none}
 <circle cx="380" cy="220" r="20" fill="#606058" opacity="0.4"/>
 <circle cx="440" cy="320" r="32" fill="#585852" opacity="0.35"/>
 <circle cx="680" cy="55" r="11" fill="#2a5aaa"/>
-<text x="680" y="78" font-family="JetBrains Mono,monospace" font-size="8" fill="#4fc3f7" text-anchor="middle" opacity="0.5">EARTH — 248,000 MI</text>
+<text x="680" y="78" font-family="JetBrains Mono,monospace" font-size="8" fill="#4fc3f7" text-anchor="middle" opacity="0.5">EARTH — 248,000+ MI</text>
 <g transform="translate(400,105)">
 <rect x="-5" y="-3" width="10" height="12" rx="1" fill="#aab"/>
 <path d="M-4,-3 L0,-9 L4,-3Z" fill="#ddd"/>
 </g>
-<text x="400" y="40" font-family="Orbitron,sans-serif" font-size="17" fill="#fff" text-anchor="middle" font-weight="bold">LUNAR FLYBY</text>
+<text x="400" y="40" font-family="Orbitron,sans-serif" font-size="17" fill="#fff" text-anchor="middle" font-weight="bold">LUNAR FLYBY — FAR SIDE PASSAGE</text>
 </svg>
 <div class="scene-time">Day 6 · Apr 6, 2026</div>
-<div class="scene-title">Lunar Flyby — Far Side</div>
-<div class="scene-desc">Orion passes 4,100 miles above the Moon's far side. Radio blackout for 30 minutes. Crew documents craters and terrain, potentially breaking Apollo 13's distance record of 248,655 miles from Earth.</div>
-<div class="stats">
-<div class="stat"><span class="k">Closest:</span><span class="v">~4,100 mi above Moon</span></div>
-<div class="stat"><span class="k">Max Distance:</span><span class="v">~248,000+ mi from Earth</span></div>
-<div class="stat"><span class="k">Radio Blackout:</span><span class="v">~30 min</span></div>
-<div class="stat"><span class="k">Observation:</span><span class="v">~3 hours</span></div>
+<div class="scene-title">Lunar Flyby — The Farthest Humans Have Traveled</div>
+<div class="scene-desc">The culmination of the mission. Orion passes approximately 4,100 miles (6,500 km) above the Moon's far side — the hemisphere permanently hidden from Earth. The crew photographs and documents craters, terrain features, and potential future landing sites during 3 hours of intensive observation. As Orion swings behind the Moon, radio contact is lost for ~30 minutes — the crew is truly alone. At the trajectory's farthest point (~4,700 miles beyond the Moon), they may break Apollo 13's record of 248,655 miles from Earth. The Moon's gravity slingshots Orion onto its return trajectory.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Flyby Parameters</div>
+<div class="row"><span class="k">Closest Approach</span><span class="v">~4,100 mi above</span></div>
+<div class="row"><span class="k">Max Earth Distance</span><span class="v crit">~248,000+ mi</span></div>
+<div class="row"><span class="k">Apollo 13 Record</span><span class="v">248,655 mi</span></div>
+<div class="row"><span class="k">Far Side Pass</span><span class="v warn">~30 min LOS</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Crew Operations</div>
+<div class="row"><span class="k">Observation Window</span><span class="v">~3 hours</span></div>
+<div class="row"><span class="k">Photography</span><span class="v ok">Far Side Terrain</span></div>
+<div class="row"><span class="k">Geology Doc</span><span class="v ok">Crater Features</span></div>
+<div class="row"><span class="k">Trajectory</span><span class="v ok">Gravity Slingshot</span></div>
+</div>
 </div>
 </div>
 
@@ -555,11 +763,27 @@ input[type="radio"]{display:none}
 <path d="M-4,-3 L0,-9 L4,-3Z" fill="#ddd"/>
 </g>
 <path d="M690,100 C520,150 360,190 140,290" stroke="#00e5ff" stroke-width="0.7" fill="none" stroke-dasharray="6 4" opacity="0.15"/>
-<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="13" fill="#00e5ff" text-anchor="middle">RETURN COAST — EARTH GROWING</text>
+<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="13" fill="#00e5ff" text-anchor="middle">RETURN COAST — DAYS 7-9</text>
 </svg>
 <div class="scene-time">Days 7-9 · Apr 7-9, 2026</div>
-<div class="scene-title">Return to Earth</div>
-<div class="scene-desc">Gravity slingshots Orion home. Crew has one rest day, completes remaining tests, and prepares for reentry. Earth grows larger each hour.</div>
+<div class="scene-title">Return to Earth — Homeward Bound</div>
+<div class="scene-desc">The gravity slingshot sends Orion accelerating back toward Earth. Day 7 is the only scheduled off-duty day — no mandatory tasks except periodic system monitoring. The crew can read, photograph, and reflect on having traveled farther from home than any humans in history. Days 8-9 see increasing activity: trajectory correction burns, medical checks including blood draws, radiation dosimetry readings, and pre-reentry preparation. The crew studies splashdown procedures via video conference with Houston. Earth grows visibly larger each hour, from thumb-sized to dominating the windows.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Navigation</div>
+<div class="row"><span class="k">Day 7 Distance</span><span class="v">~220,000 mi</span></div>
+<div class="row"><span class="k">Day 9 Distance</span><span class="v">~80,000 mi</span></div>
+<div class="row"><span class="k">Velocity</span><span class="v">3,000-8,000 mph (accel)</span></div>
+<div class="row"><span class="k">ETA Splashdown</span><span class="v">~1-3 days</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Crew Status</div>
+<div class="row"><span class="k">Day 7</span><span class="v ok">OFF-DUTY REST</span></div>
+<div class="row"><span class="k">Medical Checks</span><span class="v ok">Blood Draws Done</span></div>
+<div class="row"><span class="k">Radiation Dose</span><span class="v">Within Limits</span></div>
+<div class="row"><span class="k">Morale</span><span class="v ok">HIGH</span></div>
+</div>
+</div>
 </div>
 
 <!-- SCENE 18: SM Sep -->
@@ -572,17 +796,33 @@ input[type="radio"]{display:none}
 <path d="M-12,0 L0,-22 L12,0Z" fill="#d0c8b8"/>
 <rect x="-14" y="0" width="28" height="8" rx="1" fill="#8a7a6a"/>
 <rect x="-14" y="8" width="28" height="5" rx="1" fill="#554433"/>
-<text x="0" y="-32" font-family="JetBrains Mono,monospace" font-size="9" fill="#ddd" text-anchor="middle" opacity="0.6">CM</text>
+<text x="0" y="-32" font-family="JetBrains Mono,monospace" font-size="9" fill="#ddd" text-anchor="middle" opacity="0.6">CREW MODULE</text>
 </g>
 <g transform="translate(500,205)" opacity="0.45">
 <rect x="-12" y="-5" width="24" height="34" rx="2" fill="#6a7a8a"/>
-<text x="0" y="50" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">ESM</text>
+<text x="0" y="50" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">ESM JETTISONED</text>
 </g>
-<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="14" fill="#ff5252" text-anchor="middle">SERVICE MODULE SEPARATION</text>
+<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="14" fill="#ff5252" text-anchor="middle">SERVICE MODULE SEPARATION — HEAT SHIELD EXPOSED</text>
 </svg>
 <div class="scene-time">Day 10 · Apr 10, 5:09 PM EDT</div>
-<div class="scene-title">Service Module Jettison</div>
-<div class="scene-desc">The European Service Module separates, exposing Orion's AVCOAT heat shield — the largest ever built — for the fastest crewed reentry in history.</div>
+<div class="scene-title">Service Module Separation</div>
+<div class="scene-desc">In the final hours before reentry, pyrotechnic bolts fire to sever the 15,000-lb European Service Module — Orion's propulsion, power, water, and oxygen supply for 10 days. Springs push the ESM safely away. For the first time since leaving Earth, Orion's AVCOAT heat shield is exposed — a 16.5-foot-diameter ablative thermal protection system, the largest ever built. The ESM will experience destructive reentry. Following Artemis I analysis of unexpected heat shield char loss, NASA implemented a modified steeper entry profile for Artemis II.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Separation Event</div>
+<div class="row"><span class="k">ESM Mass</span><span class="v">~15,000 lbs</span></div>
+<div class="row"><span class="k">Pyro Bolts</span><span class="v ok">FIRED</span></div>
+<div class="row"><span class="k">Umbilicals</span><span class="v ok">SEVERED</span></div>
+<div class="row"><span class="k">ESM Fate</span><span class="v">Destructive Reentry</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Heat Shield</div>
+<div class="row"><span class="k">Type</span><span class="v">AVCOAT Ablative</span></div>
+<div class="row"><span class="k">Diameter</span><span class="v">16.5 ft (5.03 m)</span></div>
+<div class="row"><span class="k">Entry Profile</span><span class="v warn">STEEP (Modified)</span></div>
+<div class="row"><span class="k">Expected Peak</span><span class="v crit">~5,000°F</span></div>
+</div>
+</div>
 </div>
 
 <!-- SCENE 19: Reentry -->
@@ -600,17 +840,27 @@ input[type="radio"]{display:none}
 <rect x="-12" y="5" width="24" height="6" rx="1" fill="#8a6a4a"/>
 <rect x="-12" y="11" width="24" height="3" fill="#ff4400" opacity="0.75"/>
 </g>
-<text x="400" y="45" font-family="Orbitron,sans-serif" font-size="17" fill="#ff5252" text-anchor="middle" font-weight="bold">REENTRY — 25,000 MPH</text>
-<text x="400" y="68" font-family="JetBrains Mono,monospace" font-size="10" fill="#ff6e40" text-anchor="middle" opacity="0.6">~5,000°F · MACH 32 · COMMS BLACKOUT</text>
+<text x="400" y="45" font-family="Orbitron,sans-serif" font-size="17" fill="#ff5252" text-anchor="middle" font-weight="bold">ATMOSPHERIC REENTRY — MACH 32</text>
+<text x="400" y="68" font-family="JetBrains Mono,monospace" font-size="10" fill="#ff6e40" text-anchor="middle" opacity="0.6">25,000 MPH · 5,000°F · PLASMA BLACKOUT</text>
 </svg>
 <div class="scene-time">Day 10 · Apr 10, 5:32 PM EDT</div>
-<div class="scene-title">Atmospheric Reentry</div>
-<div class="scene-desc">Orion hits atmosphere at 25,000 mph — fastest crewed reentry ever. Heat shield reaches 5,000°F. Plasma blocks radio for ~3 minutes. Crew experiences 4 Gs.</div>
-<div class="stats">
-<div class="stat"><span class="k">Entry Speed:</span><span class="v">25,000 mph (Mach 32)</span></div>
-<div class="stat"><span class="k">Peak Heat:</span><span class="v">~5,000°F</span></div>
-<div class="stat"><span class="k">Peak G:</span><span class="v">~4 G</span></div>
-<div class="stat"><span class="k">Blackout:</span><span class="v">~3 min</span></div>
+<div class="scene-title">Atmospheric Reentry — Fastest Crewed Return in History</div>
+<div class="scene-desc">Orion strikes Earth's atmosphere at approximately 25,000 mph (40,000 km/h; Mach 32) — faster than any crewed spacecraft has ever entered the atmosphere. The heat shield surface reaches approximately 5,000°F (2,760°C) — half the Sun's surface temperature — as kinetic energy converts to thermal energy. A sheath of superheated plasma envelops the capsule, blocking all radio communications for several minutes. The crew experiences peak deceleration of approximately 4 Gs. Unlike Artemis I's skip reentry, Artemis II uses a steeper, direct entry profile based on post-flight heat shield analysis.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Entry Parameters</div>
+<div class="row"><span class="k">Entry Velocity</span><span class="v crit">25,000 mph (Mach 32)</span></div>
+<div class="row"><span class="k">Entry Angle</span><span class="v">−1.45° (steep)</span></div>
+<div class="row"><span class="k">Peak Heat</span><span class="v crit">~5,000°F (2,760°C)</span></div>
+<div class="row"><span class="k">Peak G-Load</span><span class="v warn">~4 G</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Communications</div>
+<div class="row"><span class="k">Plasma Blackout</span><span class="v warn">~3 min NO SIGNAL</span></div>
+<div class="row"><span class="k">Compared to ISS</span><span class="v">17,500 mph</span></div>
+<div class="row"><span class="k">Compared to Apollo</span><span class="v">~24,700 mph</span></div>
+<div class="row"><span class="k">Record</span><span class="v ok">FASTEST CREWED</span></div>
+</div>
 </div>
 </div>
 
@@ -633,19 +883,29 @@ input[type="radio"]{display:none}
 </g>
 <g transform="translate(620,188)">
 <rect x="-25" y="-5" width="50" height="10" rx="2" fill="#555" opacity="0.6"/>
-<text x="0" y="18" font-family="JetBrains Mono,monospace" font-size="8" fill="#888" text-anchor="middle">RECOVERY</text>
+<text x="0" y="18" font-family="JetBrains Mono,monospace" font-size="8" fill="#888" text-anchor="middle">USS RECOVERY</text>
 </g>
-<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="20" fill="#69f0ae" text-anchor="middle" font-weight="bold">SPLASHDOWN</text>
-<text x="400" y="75" font-family="JetBrains Mono,monospace" font-size="10" fill="#4fc3f7" text-anchor="middle" opacity="0.6">685,000 MI · 10 DAYS · PACIFIC OCEAN</text>
+<text x="400" y="50" font-family="Orbitron,sans-serif" font-size="20" fill="#69f0ae" text-anchor="middle" font-weight="bold">SPLASHDOWN — MISSION COMPLETE</text>
+<text x="400" y="75" font-family="JetBrains Mono,monospace" font-size="10" fill="#4fc3f7" text-anchor="middle" opacity="0.6">685,000 MILES · 10 DAYS · PACIFIC OCEAN</text>
 </svg>
 <div class="scene-time">Day 10 · Apr 10, 5:40 PM EDT</div>
-<div class="scene-title">Splashdown — Mission Complete</div>
-<div class="scene-desc">Orion lands in the Pacific off San Diego at 17 mph under three 116-foot parachutes. Navy divers secure the capsule. After 10 days and 685,000 miles, humans have returned from the Moon for the first time since 1972.</div>
-<div class="stats">
-<div class="stat"><span class="k">Duration:</span><span class="v">~10 days</span></div>
-<div class="stat"><span class="k">Distance:</span><span class="v">~685,000 mi</span></div>
-<div class="stat"><span class="k">Max Distance:</span><span class="v">~248,000+ mi</span></div>
-<div class="stat"><span class="k">Landing:</span><span class="v">17 mph</span></div>
+<div class="scene-title">Splashdown — Humanity's Return from the Moon</div>
+<div class="scene-desc">Orion splashes down in the Pacific Ocean off San Diego at approximately 17 mph under three 116-foot main parachutes. The impact is cushioned by the heat shield and energy-absorbing crew seats. U.S. Navy divers from a San Antonio-class amphibious transport dock secure the capsule with a flotation collar, then helicopter the crew to the recovery ship. After 10 days, approximately 685,000 miles of travel, a loop around the Moon's far side, and the fastest crewed reentry in history, the Artemis II crew has returned safely. For the first time since Apollo 17 in December 1972, humans have voyaged beyond low Earth orbit and returned.</div>
+<div class="telem">
+<div class="telem-group">
+<div class="telem-group-title">Landing Data</div>
+<div class="row"><span class="k">Impact Speed</span><span class="v ok">~17 mph</span></div>
+<div class="row"><span class="k">Location</span><span class="v">Pacific, off San Diego</span></div>
+<div class="row"><span class="k">Main Chutes</span><span class="v ok">3× 116 ft deployed</span></div>
+<div class="row"><span class="k">Recovery Ship</span><span class="v">San Antonio-class LPD</span></div>
+</div>
+<div class="telem-group">
+<div class="telem-group-title">Mission Summary</div>
+<div class="row"><span class="k">Duration</span><span class="v ok">~10 days</span></div>
+<div class="row"><span class="k">Total Distance</span><span class="v ok">~685,000 mi</span></div>
+<div class="row"><span class="k">Max Distance</span><span class="v ok">~248,000+ mi</span></div>
+<div class="row"><span class="k">Status</span><span class="v ok">MISSION COMPLETE</span></div>
+</div>
 </div>
 </div>
 
