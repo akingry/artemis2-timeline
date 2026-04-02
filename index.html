@@ -89,7 +89,7 @@ input[type="radio"]{display:none}
 <body>
 
 <header>
-<h1>ARTEMIS II</h1>
+<h1>ARTEMIS II <span id="liveClock" style="font-size:.7em;margin-left:12px;font-weight:400"></span></h1>
 <div class="sub">APRIL 1, 2026 · LUNAR FLYBY · 10 DAYS · 685,000 MILES</div>
 <div class="crew">
 <span><i class="d c1"></i>CDR Reid Wiseman (USN)</span>
@@ -911,5 +911,72 @@ input[type="radio"]{display:none}
 
 </div>
 
+<script>
+// T-0: April 1, 2026 at 6:35 PM EDT (22:35 UTC)
+const T0 = new Date(Date.UTC(2026, 3, 1, 22, 35, 0));
+
+// Event times in minutes relative to T-0
+const events = [
+  { id: 's1',  t: -600 },    // Countdown T-10:00:00
+  { id: 's2',  t: -420 },    // Tanking T-7:00:00
+  { id: 's3',  t: -540 },    // Crew Prep T-9:00:00
+  { id: 's4',  t: -180 },    // Ingress T-3:00:00
+  { id: 's5',  t: -10 },     // Terminal T-10 min
+  { id: 's6',  t: -0.12 },   // Ignition T-7 sec
+  { id: 's7',  t: 0 },       // Liftoff T+0
+  { id: 's8',  t: 1.25 },    // Max Q T+1:15
+  { id: 's9',  t: 2.1 },     // SRB Sep T+2:06
+  { id: 's10', t: 8.1 },     // MECO T+8:06
+  { id: 's11', t: 12 },      // Solar Arrays T+12 min
+  { id: 's12', t: 106 },     // HEO T+1:46:00
+  { id: 's13', t: 1620 },    // TLI Day 2 (~27 hours)
+  { id: 's14', t: 4320 },    // Outbound Days 3-4 (~72 hours)
+  { id: 's15', t: 5760 },    // Lunar SOI Day 5 (~96 hours)
+  { id: 's16', t: 7200 },    // Flyby Day 6 (~120 hours)
+  { id: 's17', t: 10080 },   // Return Days 7-9 (~168 hours)
+  { id: 's18', t: 12900 },   // SM Sep Day 10 (~215 hours)
+  { id: 's19', t: 12923 },   // Reentry (~215.4 hours)
+  { id: 's20', t: 12931 }    // Splashdown (~215.5 hours)
+];
+
+function updateCurrentEvent() {
+  const now = new Date();
+  const missionMinutes = (now - T0) / 60000; // minutes since T-0
+  
+  // Find the most recent event that has occurred
+  let currentEvent = events[0];
+  for (let i = events.length - 1; i >= 0; i--) {
+    if (missionMinutes >= events[i].t) {
+      currentEvent = events[i];
+      break;
+    }
+  }
+  
+  // Select the radio button for current event
+  const radio = document.getElementById(currentEvent.id);
+  if (radio && !radio.checked) {
+    radio.checked = true;
+  }
+  
+  // Update live clock display if element exists
+  const clock = document.getElementById('liveClock');
+  if (clock) {
+    const sign = missionMinutes < 0 ? '−' : '+';
+    const abs = Math.abs(missionMinutes);
+    const h = Math.floor(abs / 60);
+    const m = Math.floor(abs % 60);
+    const s = Math.floor((abs * 60) % 60);
+    clock.textContent = `T${sign}${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    clock.style.color = missionMinutes < 0 ? '#ff5252' : '#69f0ae';
+  }
+}
+
+// Run on load
+document.addEventListener('DOMContentLoaded', () => {
+  updateCurrentEvent();
+  // Update every 10 seconds
+  setInterval(updateCurrentEvent, 10000);
+});
+</script>
 </body>
 </html>
