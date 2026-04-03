@@ -939,6 +939,8 @@ const events = [
   { id: 's20', t: 12931 }    // Splashdown (~215.5 hours)
 ];
 
+let userOverride = false; // Flag to stop auto-switching when user clicks
+
 function updateCurrentEvent() {
   const now = new Date();
   const missionMinutes = (now - T0) / 60000; // minutes since T-0
@@ -952,10 +954,12 @@ function updateCurrentEvent() {
     }
   }
   
-  // Select the radio button for current event
-  const radio = document.getElementById(currentEvent.id);
-  if (radio && !radio.checked) {
-    radio.checked = true;
+  // Only auto-select if user hasn't manually clicked a different event
+  if (!userOverride) {
+    const radio = document.getElementById(currentEvent.id);
+    if (radio && !radio.checked) {
+      radio.checked = true;
+    }
   }
   
   // Update live clock display if element exists
@@ -974,8 +978,15 @@ function updateCurrentEvent() {
 // Run on load
 document.addEventListener('DOMContentLoaded', () => {
   updateCurrentEvent();
-  // Update every 10 seconds
+  // Update clock every 10 seconds
   setInterval(updateCurrentEvent, 10000);
+  
+  // When user clicks any tab label, stop auto-switching
+  document.querySelectorAll('.tabs label').forEach(label => {
+    label.addEventListener('click', () => {
+      userOverride = true;
+    });
+  });
 });
 </script>
 </body>
